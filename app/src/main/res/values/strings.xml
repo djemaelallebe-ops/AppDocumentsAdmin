@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mes Papiers</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Bienvenue dans Mes Papiers</string>
+    <string name="onboarding_welcome_description">Une application simple et securisee pour organiser vos documents administratifs.</string>
+    <string name="onboarding_welcome_subtitle">Vos documents sont stockes uniquement sur votre telephone.</string>
+    <string name="onboarding_continue">Continuer</string>
+    <string name="onboarding_learn_more">En savoir plus</string>
+
+    <string name="onboarding_storage_title">Stockage local</string>
+    <string name="onboarding_storage_description">Mes Papiers ne cree aucun compte et ne synchronise rien sur internet.</string>
+    <string name="onboarding_storage_subtitle">Tous vos documents sont enregistres dans un espace securise, local a votre appareil.</string>
+    <string name="onboarding_ok">OK</string>
+    <string name="onboarding_how_it_works">Comment ca fonctionne ?</string>
+
+    <string name="onboarding_add_title">Ajouter des documents</string>
+    <string name="onboarding_add_description">Vous pouvez :</string>
+    <string name="onboarding_add_scan">Scanner un document avec l\'appareil photo (conversion en PDF)</string>
+    <string name="onboarding_add_import">Importer un PDF deja present sur votre telephone</string>
+    <string name="onboarding_add_note">Les documents sont organises en dossiers (Identite, Factures, Revenus...).</string>
+    <string name="onboarding_understood">Compris</string>
+
+    <string name="onboarding_export_title">Export ZIP</string>
+    <string name="onboarding_export_description">Vous pouvez creer un dossier ZIP avec les documents de votre choix :</string>
+    <string name="onboarding_export_examples">Carte d\'identite, Facture d\'electricite, Assurance habitation, etc.</string>
+    <string name="onboarding_export_subtitle">Le ZIP est pret a etre partage par email, messagerie ou autre.</string>
+    <string name="onboarding_export_note">Il ne quitte votre telephone que si vous choisissez vous-meme de le partager.</string>
+    <string name="onboarding_great_continue">Super, continuer</string>
+
+    <string name="onboarding_unlimited_title">Sans limites, sans compte</string>
+    <string name="onboarding_unlimited_description">Vous pouvez creer autant de profils que necessaire : vous-meme, vos enfants, un parent, un proche...</string>
+    <string name="onboarding_unlimited_subtitle">Il n\'y a aucune limite, aucun compte, aucun mode payant.</string>
+
+    <string name="onboarding_profile_title">Creation du profil</string>
+    <string name="onboarding_profile_hint">Nom du profil</string>
+    <string name="onboarding_profile_example">Moi</string>
+    <string name="onboarding_create_profile">Creer le profil</string>
+
+    <!-- Profile -->
+    <string name="profile_picker_title">Mes profils</string>
+    <string name="profile_add">Ajouter un profil</string>
+    <string name="profile_manage">Gerer les profils</string>
+    <string name="profile_rename">Renommer</string>
+    <string name="profile_delete">Supprimer</string>
+    <string name="profile_delete_confirm_title">Supprimer le profil ?</string>
+    <string name="profile_delete_confirm_message">Cette action supprimera definitivement le profil \"%1$s\" et tous ses documents. Cette action est irreversible.</string>
+    <string name="profile_delete_final_confirm">Oui, supprimer definitivement</string>
+
+    <!-- Categories -->
+    <string name="category_identity">Identite &amp; Permis</string>
+    <string name="category_health">Sante &amp; Famille</string>
+    <string name="category_housing">Logement &amp; Factures</string>
+    <string name="category_income">Revenus &amp; Impots</string>
+    <string name="category_other">Autres documents</string>
+
+    <!-- Document types -->
+    <string name="doc_type_identity_card">Carte d\'identite</string>
+    <string name="doc_type_passport">Passeport</string>
+    <string name="doc_type_driving_license">Permis de conduire</string>
+    <string name="doc_type_health_card">Carte Vitale</string>
+    <string name="doc_type_mutual_card">Carte Mutuelle</string>
+    <string name="doc_type_family_book">Livret de famille</string>
+    <string name="doc_type_electricity_bill">Facture Electricite</string>
+    <string name="doc_type_gas_bill">Facture Gaz</string>
+    <string name="doc_type_water_bill">Facture Eau</string>
+    <string name="doc_type_internet_bill">Facture Internet</string>
+    <string name="doc_type_rent_receipt">Quittance de Loyer</string>
+    <string name="doc_type_home_insurance">Assurance Habitation</string>
+    <string name="doc_type_payslip">Bulletin de Salaire</string>
+    <string name="doc_type_tax_notice">Avis d\'Impot</string>
+    <string name="doc_type_other">Autre document</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Mes documents</string>
+    <string name="dashboard_documents_count">%1$d document(s)</string>
+    <string name="dashboard_no_documents">Aucun document</string>
+    <string name="dashboard_add_document">Ajouter un document</string>
+
+    <!-- Add Document -->
+    <string name="add_document_title">Ajouter un document</string>
+    <string name="add_document_scan">Scanner un document</string>
+    <string name="add_document_scan_description">Prenez en photo un ou plusieurs pages</string>
+    <string name="add_document_import">Importer un PDF</string>
+    <string name="add_document_import_description">Selectionnez un fichier PDF existant</string>
+
+    <!-- Document Info -->
+    <string name="document_info_title">Informations du document</string>
+    <string name="document_info_name">Nom du document</string>
+    <string name="document_info_category">Categorie</string>
+    <string name="document_info_expiry">Date d\'expiration</string>
+    <string name="document_info_period">Periode</string>
+    <string name="document_info_month">Mois</string>
+    <string name="document_info_year">Annee</string>
+    <string name="document_info_save">Enregistrer</string>
+
+    <!-- Viewer -->
+    <string name="viewer_export">Exporter</string>
+    <string name="viewer_history">Historique</string>
+    <string name="viewer_delete">Supprimer</string>
+    <string name="viewer_page">Page %1$d / %2$d</string>
+
+    <!-- History -->
+    <string name="history_title">Historique des versions</string>
+    <string name="history_version">Version du %1$s</string>
+    <string name="history_source_scanned">Scanne</string>
+    <string name="history_source_imported">Importe</string>
+    <string name="history_delete_version">Supprimer cette version</string>
+
+    <!-- Export -->
+    <string name="export_title">Exporter mon dossier</string>
+    <string name="export_select_all">Tout selectionner</string>
+    <string name="export_deselect_all">Tout deselectionner</string>
+    <string name="export_generate_zip">Generer le ZIP</string>
+    <string name="export_selected">%1$d document(s) selectionne(s)</string>
+    <string name="export_success">Export termine avec succes</string>
+    <string name="export_share">Partager</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Parametres</string>
+    <string name="settings_security">Securite</string>
+    <string name="settings_biometric">Protection biometrique</string>
+    <string name="settings_biometric_description">Verrouillez l\'acces a l\'application avec votre empreinte ou votre visage</string>
+    <string name="settings_about">A propos</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_support">Soutenir l\'application</string>
+
+    <!-- Support -->
+    <string name="support_title">Soutenir l\'application</string>
+    <string name="support_tips_title">Pourboire via Google Play</string>
+    <string name="support_tips_description">Si vous le souhaitez, vous pouvez soutenir le developpement avec un petit pourboire via Google Play.</string>
+    <string name="support_external_title">Don libre externe</string>
+    <string name="support_external_description">Vous pouvez aussi faire un don libre via les solutions suivantes (ce don ne debloque aucune fonctionnalite dans l\'application) :</string>
+    <string name="support_paypal">PayPal</string>
+
+    <!-- Reminder dialogs -->
+    <string name="reminder_support_title">Merci d\'utiliser Mes Papiers</string>
+    <string name="reminder_support_message">L\'application est gratuite et le restera toujours. Si elle vous aide a gerer vos documents, vous pouvez la soutenir en laissant un avis ou un petit pourboire.</string>
+    <string name="reminder_support_button">Soutenir l\'application</string>
+    <string name="reminder_rate_button">Laisser un avis</string>
+    <string name="reminder_later">Plus tard</string>
+    <string name="reminder_never">Ne plus me le rappeler</string>
+
+    <string name="reminder_rating_title">Mes Papiers vous rend service ?</string>
+    <string name="reminder_rating_message">Vous pouvez nous aider en laissant une note sur Google Play. Cela aide d\'autres personnes a decouvrir l\'application.</string>
+    <string name="reminder_rating_button">Laisser une note</string>
+    <string name="reminder_rating_never">Ne plus afficher</string>
+
+    <!-- Errors -->
+    <string name="error_storage_full">Espace de stockage insuffisant. Veuillez liberer de l\'espace sur votre telephone.</string>
+    <string name="error_file_corrupted">Impossible de lire ce document. Il est peut-etre corrompu.</string>
+    <string name="error_generic">Une erreur est survenue. Veuillez reessayer.</string>
+
+    <!-- Common -->
+    <string name="cancel">Annuler</string>
+    <string name="confirm">Confirmer</string>
+    <string name="delete">Supprimer</string>
+    <string name="save">Enregistrer</string>
+    <string name="close">Fermer</string>
+    <string name="back">Retour</string>
+
+    <!-- Months -->
+    <string name="month_january">Janvier</string>
+    <string name="month_february">Fevrier</string>
+    <string name="month_march">Mars</string>
+    <string name="month_april">Avril</string>
+    <string name="month_may">Mai</string>
+    <string name="month_june">Juin</string>
+    <string name="month_july">Juillet</string>
+    <string name="month_august">Aout</string>
+    <string name="month_september">Septembre</string>
+    <string name="month_october">Octobre</string>
+    <string name="month_november">Novembre</string>
+    <string name="month_december">Decembre</string>
+</resources>
