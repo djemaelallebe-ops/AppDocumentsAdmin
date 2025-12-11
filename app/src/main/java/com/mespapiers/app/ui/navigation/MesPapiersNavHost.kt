@@ -1,9 +1,22 @@
 package com.mespapiers.app.ui.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -12,7 +25,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mespapiers.app.ui.screens.dashboard.DashboardScreen
-import com.mespapiers.app.ui.screens.dashboard.DashboardViewModel
 import com.mespapiers.app.ui.screens.document.AddDocumentScreen
 import com.mespapiers.app.ui.screens.document.DocumentInfoScreen
 import com.mespapiers.app.ui.screens.document.ScannerScreen
@@ -26,6 +38,8 @@ import com.mespapiers.app.ui.screens.support.SupportScreen
 import com.mespapiers.app.ui.screens.viewer.HistoryScreen
 import com.mespapiers.app.ui.screens.viewer.ViewerScreen
 
+private const val TRANSITION_DURATION = 300
+
 @Composable
 fun MesPapiersNavHost(
     navController: NavHostController = rememberNavController()
@@ -34,16 +48,59 @@ fun MesPapiersNavHost(
     val hasCompletedOnboarding by onboardingViewModel.hasCompletedOnboarding.collectAsState()
     val hasProfile by onboardingViewModel.hasProfile.collectAsState()
 
-    val startDestination = when {
-        hasCompletedOnboarding == null -> NavRoutes.Onboarding.route // Loading
-        hasCompletedOnboarding == false -> NavRoutes.Onboarding.route
-        hasProfile == false -> NavRoutes.ProfilePicker.route
-        else -> NavRoutes.Dashboard.route
+    // Use a stable start destination with loading state
+    var isInitialized by remember { mutableStateOf(false) }
+    var startDestination by remember { mutableStateOf(NavRoutes.Onboarding.route) }
+
+    LaunchedEffect(hasCompletedOnboarding, hasProfile) {
+        if (hasCompletedOnboarding != null) {
+            startDestination = when {
+                hasCompletedOnboarding == false -> NavRoutes.Onboarding.route
+                hasProfile == false -> NavRoutes.ProfilePicker.route
+                else -> NavRoutes.Dashboard.route
+            }
+            isInitialized = true
+        }
+    }
+
+    // Show loading while determining initial destination
+    if (!isInitialized) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+        }
+        return
     }
 
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = startDestination,
+        enterTransition = {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Start,
+                animationSpec = tween(TRANSITION_DURATION)
+            ) + fadeIn(animationSpec = tween(TRANSITION_DURATION))
+        },
+        exitTransition = {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.Start,
+                animationSpec = tween(TRANSITION_DURATION)
+            ) + fadeOut(animationSpec = tween(TRANSITION_DURATION))
+        },
+        popEnterTransition = {
+            slideIntoContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.End,
+                animationSpec = tween(TRANSITION_DURATION)
+            ) + fadeIn(animationSpec = tween(TRANSITION_DURATION))
+        },
+        popExitTransition = {
+            slideOutOfContainer(
+                towards = AnimatedContentTransitionScope.SlideDirection.End,
+                animationSpec = tween(TRANSITION_DURATION)
+            ) + fadeOut(animationSpec = tween(TRANSITION_DURATION))
+        }
     ) {
         // Onboarding
         composable(NavRoutes.Onboarding.route) {

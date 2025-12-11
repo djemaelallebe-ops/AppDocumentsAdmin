@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mespapiers.app.domain.model.Category
 import com.mespapiers.app.domain.model.Document
+import com.mespapiers.app.ui.components.EmptyScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -133,38 +134,12 @@ fun ExportScreen(
         }
     ) { padding ->
         if (categoriesWithDocuments.isEmpty() || categoriesWithDocuments.all { it.documents.isEmpty() }) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(24.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Description,
-                        contentDescription = null,
-                        modifier = Modifier.size(64.dp),
-                        tint = MaterialTheme.colorScheme.outline
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "Aucun document a exporter",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = "Ajoutez des documents depuis le dashboard pour pouvoir les exporter.",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
+            EmptyScreen(
+                icon = Icons.Default.Description,
+                title = "Aucun document a exporter",
+                subtitle = "Ajoutez des documents depuis le dashboard pour pouvoir les exporter.",
+                modifier = Modifier.padding(padding)
+            )
         } else {
             LazyColumn(
                 modifier = Modifier

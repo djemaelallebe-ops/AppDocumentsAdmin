@@ -53,6 +53,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.mespapiers.app.ui.components.ErrorScreen
+import com.mespapiers.app.ui.components.LoadingScreen
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -132,24 +134,14 @@ fun ViewerScreen(
         ) {
             when {
                 isLoading -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                    LoadingScreen(message = "Chargement du document...")
                 }
 
                 error != null -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(24.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = error ?: "Erreur de chargement",
-                            color = MaterialTheme.colorScheme.error,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+                    ErrorScreen(
+                        message = error ?: "Erreur de chargement",
+                        onRetry = { viewModel.loadDocument(documentId) }
+                    )
                 }
 
                 document?.latestVersion != null -> {
