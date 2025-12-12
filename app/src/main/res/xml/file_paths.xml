@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Internal files directory for exports -->
+    <files-path
+        name="exports"
+        path="exports/" />
+
+    <!-- Cache directory for temporary files -->
+    <cache-path
+        name="cache"
+        path="." />
+
+    <!-- Documents directory -->
+    <files-path
+        name="documents"
+        path="profiles/" />
+</paths>

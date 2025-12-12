@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Document icon representing the app -->
+    <group android:translateX="27" android:translateY="27">
+        <!-- Main document shape -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M8,4 L36,4 L46,14 L46,50 Q46,52 44,52 L10,52 Q8,52 8,50 L8,4 Z" />
+        <!-- Folded corner -->
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M36,4 L36,14 L46,14 L36,4 Z" />
+        <!-- Document lines -->
+        <path
+            android:strokeColor="#1976D2"
+            android:strokeWidth="2"
+            android:pathData="M14,22 L40,22" />
+        <path
+            android:strokeColor="#1976D2"
+            android:strokeWidth="2"
+            android:pathData="M14,30 L40,30" />
+        <path
+            android:strokeColor="#1976D2"
+            android:strokeWidth="2"
+            android:pathData="M14,38 L32,38" />
+    </group>
+</vector>
