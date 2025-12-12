@@ -2,41 +2,54 @@ package com.mespapiers.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Primary colors - Professional blue
-val Primary = Color(0xFF1565C0)
-val PrimaryDark = Color(0xFF0D47A1)
-val PrimaryLight = Color(0xFF42A5F5)
+// =============================================================================
+// PALETTE SOBRE "PAPER WHITE" - Design minimaliste et élégant
+// =============================================================================
 
-// Secondary colors - Neutral gray
-val Secondary = Color(0xFF546E7A)
-val SecondaryDark = Color(0xFF37474F)
-val SecondaryLight = Color(0xFF78909C)
+// Primary colors - Gris anthracite élégant
+val Primary = Color(0xFF2D3436)
+val PrimaryDark = Color(0xFF1E2425)
+val PrimaryLight = Color(0xFF636E72)
 
-// Background colors - Clean administrative style
-val Background = Color(0xFFFAFAFA)
+// Secondary colors - Gris doux
+val Secondary = Color(0xFF636E72)
+val SecondaryDark = Color(0xFF4A5568)
+val SecondaryLight = Color(0xFFB2BEC3)
+
+// Background colors - Blanc pur et propre
+val Background = Color(0xFFFFFFFF)
 val Surface = Color(0xFFFFFFFF)
-val SurfaceVariant = Color(0xFFF5F5F5)
+val SurfaceVariant = Color(0xFFF8F9FA)
 
-// Text colors
+// Text colors - Contraste optimal
 val OnPrimary = Color(0xFFFFFFFF)
 val OnSecondary = Color(0xFFFFFFFF)
-val OnBackground = Color(0xFF212121)
-val OnSurface = Color(0xFF212121)
-val TextSecondary = Color(0xFF757575)
+val OnBackground = Color(0xFF2D3436)
+val OnSurface = Color(0xFF2D3436)
+val TextSecondary = Color(0xFF636E72)
+val TextTertiary = Color(0xFFB2BEC3)
 
-// Accent colors
-val Success = Color(0xFF4CAF50)
-val Warning = Color(0xFFFF9800)
-val Error = Color(0xFFF44336)
+// Accent unique - Violet sobre pour les actions
+val Accent = Color(0xFF6C5CE7)
+val AccentLight = Color(0xFFA29BFE)
 
-// Category colors
-val CategoryIdentity = Color(0xFF1565C0)
-val CategoryHealth = Color(0xFF2E7D32)
-val CategoryHousing = Color(0xFFF57C00)
-val CategoryIncome = Color(0xFF7B1FA2)
-val CategoryOther = Color(0xFF546E7A)
+// Status colors - Tons désaturés et sobres
+val Success = Color(0xFF00B894)
+val Warning = Color(0xFFFDCB6E)
+val Error = Color(0xFFE17055)
 
-// Expiry indicator colors
-val ExpiryValid = Color(0xFF4CAF50)
-val ExpiryWarning = Color(0xFFFF9800)
-val ExpiryExpired = Color(0xFFF44336)
+// Category colors - Palette monochrome avec nuances subtiles
+val CategoryIdentity = Color(0xFF2D3436)    // Anthracite
+val CategoryHealth = Color(0xFF00B894)      // Vert menthe sobre
+val CategoryHousing = Color(0xFFE17055)     // Corail doux
+val CategoryIncome = Color(0xFF6C5CE7)      // Violet accent
+val CategoryOther = Color(0xFF636E72)       // Gris neutre
+
+// Expiry indicator colors - Indicateurs discrets
+val ExpiryValid = Color(0xFF00B894)
+val ExpiryWarning = Color(0xFFFDCB6E)
+val ExpiryExpired = Color(0xFFE17055)
+
+// Borders and dividers - Lignes subtiles
+val Border = Color(0xFFE9ECEF)
+val Divider = Color(0xFFF1F3F4)

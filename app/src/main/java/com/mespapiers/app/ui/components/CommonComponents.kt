@@ -14,10 +14,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.outlined.ErrorOutline
+import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -26,12 +30,17 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
+// =============================================================================
+// COMPOSANTS SOBRES - Design minimaliste et élégant
+// =============================================================================
+
 /**
- * Full-screen loading indicator
+ * Indicateur de chargement sobre
  */
 @Composable
 fun LoadingScreen(
@@ -46,12 +55,15 @@ fun LoadingScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            // Spinner sobre et fin
             CircularProgressIndicator(
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(48.dp)
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(32.dp),
+                strokeWidth = 2.dp,
+                strokeCap = StrokeCap.Round
             )
             if (message != null) {
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = message,
                     style = MaterialTheme.typography.bodyMedium,
@@ -63,7 +75,7 @@ fun LoadingScreen(
 }
 
 /**
- * Error screen with retry button
+ * Écran d'erreur sobre avec bouton de réessai
  */
 @Composable
 fun ErrorScreen(
@@ -78,25 +90,27 @@ fun ErrorScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(32.dp)
         ) {
+            // Icône outline sobre
             Icon(
-                imageVector = Icons.Default.Error,
+                imageVector = Icons.Outlined.ErrorOutline,
                 contentDescription = null,
-                modifier = Modifier.size(64.dp),
-                tint = MaterialTheme.colorScheme.error
+                modifier = Modifier.size(48.dp),
+                tint = MaterialTheme.colorScheme.error.copy(alpha = 0.8f)
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.error,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             if (onRetry != null) {
-                Spacer(modifier = Modifier.height(24.dp))
-                Button(onClick = onRetry) {
-                    Text("Reessayer")
+                Spacer(modifier = Modifier.height(28.dp))
+                // Bouton outline sobre
+                OutlinedButton(onClick = onRetry) {
+                    Text("Réessayer")
                 }
             }
         }
@@ -104,11 +118,11 @@ fun ErrorScreen(
 }
 
 /**
- * Empty state screen
+ * Écran vide sobre
  */
 @Composable
 fun EmptyScreen(
-    icon: ImageVector = Icons.Default.Folder,
+    icon: ImageVector = Icons.Outlined.FolderOpen,
     title: String,
     subtitle: String? = null,
     modifier: Modifier = Modifier,
@@ -121,19 +135,20 @@ fun EmptyScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(32.dp)
         ) {
+            // Icône sobre et légère
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                modifier = Modifier.size(64.dp),
-                tint = MaterialTheme.colorScheme.outline
+                modifier = Modifier.size(48.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             if (subtitle != null) {
@@ -141,12 +156,12 @@ fun EmptyScreen(
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 )
             }
             if (action != null) {
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(28.dp))
                 action()
             }
         }
@@ -154,7 +169,7 @@ fun EmptyScreen(
 }
 
 /**
- * Snackbar host with custom styling
+ * Snackbar sobre et élégant
  */
 @Composable
 fun MesPapiersSnackbarHost(
@@ -170,14 +185,15 @@ fun MesPapiersSnackbarHost(
                 containerColor = MaterialTheme.colorScheme.inverseSurface,
                 contentColor = MaterialTheme.colorScheme.inverseOnSurface,
                 actionColor = MaterialTheme.colorScheme.inversePrimary,
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(16.dp),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
             )
         }
     )
 }
 
 /**
- * Loading button that shows a spinner while loading
+ * Bouton de chargement sobre
  */
 @Composable
 fun LoadingButton(
@@ -190,13 +206,18 @@ fun LoadingButton(
     Button(
         onClick = onClick,
         enabled = enabled && !isLoading,
-        modifier = modifier.animateContentSize()
+        modifier = modifier.animateContentSize(),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary
+        )
     ) {
         if (isLoading) {
             CircularProgressIndicator(
-                modifier = Modifier.size(20.dp),
+                modifier = Modifier.size(18.dp),
                 color = MaterialTheme.colorScheme.onPrimary,
-                strokeWidth = 2.dp
+                strokeWidth = 2.dp,
+                strokeCap = StrokeCap.Round
             )
         } else {
             content()

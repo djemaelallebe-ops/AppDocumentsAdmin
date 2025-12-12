@@ -3,6 +3,8 @@ package com.mespapiers.app.ui.screens.dashboard
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -70,6 +72,8 @@ import com.mespapiers.app.domain.model.DocumentState
 import com.mespapiers.app.ui.components.EmptyScreen
 import com.mespapiers.app.ui.components.LoadingScreen
 import com.mespapiers.app.ui.components.MesPapiersSnackbarHost
+import com.mespapiers.app.ui.theme.Accent
+import com.mespapiers.app.ui.theme.Border
 import com.mespapiers.app.ui.theme.CategoryHealth
 import com.mespapiers.app.ui.theme.CategoryHousing
 import com.mespapiers.app.ui.theme.CategoryIdentity
@@ -215,36 +219,36 @@ private fun CategoryCard(
     val categoryColor = getCategoryColor(category.type)
     val categoryIcon = getCategoryIcon(category.type)
 
+    // Style sobre : bordure fine au lieu d'ombre
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        border = androidx.compose.foundation.BorderStroke(1.dp, Border)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(20.dp)
         ) {
-            // Category header
+            // Category header - Style épuré
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Surface(
-                    modifier = Modifier.size(40.dp),
-                    shape = RoundedCornerShape(8.dp),
-                    color = categoryColor.copy(alpha = 0.1f)
+                // Icône sobre avec fond très léger
+                Box(
+                    modifier = Modifier.size(44.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Icon(
-                            imageVector = categoryIcon,
-                            contentDescription = null,
-                            tint = categoryColor,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
+                    Icon(
+                        imageVector = categoryIcon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.size(24.dp)
+                    )
                 }
                 Spacer(modifier = Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
@@ -263,18 +267,20 @@ private fun CategoryCard(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+                // Bouton d'ajout sobre
                 Surface(
                     onClick = onAddDocument,
                     shape = RoundedCornerShape(8.dp),
-                    color = categoryColor.copy(alpha = 0.1f),
+                    color = Color.Transparent,
+                    border = androidx.compose.foundation.BorderStroke(1.dp, Border),
                     modifier = Modifier.size(40.dp)
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.Add,
                             contentDescription = "Ajouter un document",
-                            tint = categoryColor,
-                            modifier = Modifier.size(24.dp)
+                            tint = Accent,
+                            modifier = Modifier.size(20.dp)
                         )
                     }
                 }
@@ -310,13 +316,15 @@ private fun DocumentTile(
     categoryColor: Color,
     onClick: () -> Unit
 ) {
+    // Style sobre : fond subtil avec bordure fine
     Card(
         onClick = onClick,
-        modifier = Modifier.width(110.dp),
+        modifier = Modifier.width(100.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
         ),
-        shape = RoundedCornerShape(12.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        shape = RoundedCornerShape(8.dp)
     ) {
         Column(
             modifier = Modifier
@@ -325,47 +333,29 @@ private fun DocumentTile(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box {
-                Surface(
-                    modifier = Modifier.size(48.dp),
-                    shape = RoundedCornerShape(8.dp),
-                    color = categoryColor.copy(alpha = 0.1f)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Icon(
-                            imageVector = Icons.Default.Description,
-                            contentDescription = null,
-                            modifier = Modifier.size(28.dp),
-                            tint = categoryColor
-                        )
-                    }
-                }
+                // Icône document sobre
+                Icon(
+                    imageVector = Icons.Default.Description,
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
 
-                // Expiry indicator
+                // Indicateur d'expiration discret (petit point coloré)
                 if (document.state != DocumentState.ACTIVE) {
-                    Surface(
+                    Box(
                         modifier = Modifier
                             .align(Alignment.TopEnd)
-                            .size(16.dp),
-                        shape = RoundedCornerShape(4.dp),
-                        color = when (document.state) {
-                            DocumentState.EXPIRED -> MaterialTheme.colorScheme.error
-                            DocumentState.EXPIRING_SOON -> Color(0xFFFF9800)
-                            else -> Color.Transparent
-                        }
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Icon(
-                                imageVector = Icons.Default.Warning,
-                                contentDescription = when (document.state) {
-                                    DocumentState.EXPIRED -> "Expire"
-                                    DocumentState.EXPIRING_SOON -> "Expire bientot"
-                                    else -> null
-                                },
-                                modifier = Modifier.size(12.dp),
-                                tint = Color.White
+                            .size(8.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(
+                                when (document.state) {
+                                    DocumentState.EXPIRED -> Color(0xFFE17055)
+                                    DocumentState.EXPIRING_SOON -> Color(0xFFFDCB6E)
+                                    else -> Color.Transparent
+                                }
                             )
-                        }
-                    }
+                    )
                 }
             }
 
@@ -381,14 +371,14 @@ private fun DocumentTile(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Show period if available
+            // Période si disponible
             document.periodMonth?.let { month ->
                 document.periodYear?.let { year ->
                     Text(
                         text = "${getMonthShort(month)} $year",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(top = 2.dp)
+                        modifier = Modifier.padding(top = 4.dp)
                     )
                 }
             }
